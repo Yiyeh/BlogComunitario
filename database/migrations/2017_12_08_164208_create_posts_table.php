@@ -16,13 +16,13 @@ class CreatePostsTable extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
-            $table->integer('acceptedBy')->unsigned();
             $table->integer('category_id')->unsigned();
             $table->string('title');
             $table->string('slug');
             $table->string('file');
             $table->string('body');
             $table->string('votes');
+            $table->string('acceptedBy');
             
             $table->timestamps();
             
@@ -34,9 +34,7 @@ class CreatePostsTable extends Migration
                     ->onDelete('cascade')
                     ->onDelete('cascade');
             
-            $table->foreign('acceptedBy')->references('id')->on('users')
-                    ->onDelete('cascade')
-                    ->onDelete('cascade');
+
         });
     }
 
