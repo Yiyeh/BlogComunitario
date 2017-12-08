@@ -11,10 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'PageController@welcome');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/p/', ['as' => 'users.posts', 'uses' => 'PageController@posts'] );
+
+Route::get('/p/{slug?}', 'PageController@post');
+
+Auth::routes();
+
